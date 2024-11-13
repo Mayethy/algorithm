@@ -1,4 +1,4 @@
-package org.lyq.binary;
+package org.lyq.recursion.binary;
 
 /**
  * ClassName: BinarySearch

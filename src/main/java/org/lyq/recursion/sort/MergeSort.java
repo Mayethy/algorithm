@@ -1,4 +1,4 @@
-package org.lyq.sort;
+package org.lyq.recursion.sort;
 
 import java.util.Arrays;
 
