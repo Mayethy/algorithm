@@ -28,22 +28,22 @@ public class QuickSelect {
             return quickSelect(array, pivotIndex + 1, right, k);
         }
     }
-
     // 分区函数
-    private int partition(int[] array, int left, int right) {
-        int pivotIndex = left + new Random().nextInt(right - left + 1);
-        int pivotValue = array[pivotIndex];
-        swap(array, pivotIndex, right); // 将 pivot 移到数组末尾
-        int storeIndex = left;
-
-        for (int i = left; i < right; i++) {
-            if (array[i] < pivotValue) {
-                swap(array, storeIndex, i);
-                storeIndex++;
+    private static int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (array[j] < pivot) {
+                i++;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
-        swap(array, storeIndex, right); // 将 pivot 移回分区点
-        return storeIndex;
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+        return i + 1;
     }
 
     // 交换数组中的两个元素

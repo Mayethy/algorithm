@@ -57,7 +57,7 @@ public class QuickSelectTest {
         int rowIndex = 1; // 从第二行开始填充数据
 
         for (int size : SIZES) {
-            int[] array = generateRandomArray(size);
+            int[] array = generateSortedArray(size);
             for (int i = 0; i < TEST_COUNT; i++) {
                 int target = RANDOM.nextInt(size) + 1;
 
