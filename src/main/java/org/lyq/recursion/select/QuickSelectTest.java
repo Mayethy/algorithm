@@ -21,7 +21,6 @@ public class QuickSelectTest {
 
     private static final Random RANDOM = new Random();
     private static final int[] SIZES = {100, 1000, 10000}; // 数组大小
-    //private static final int[] SIZES = {100, 10000};
     private static final int TEST_COUNT = 50; // 测试次数
     private static final String[] HEADERS = {"Size", "Iteration", "Target","QuickSelect Time (us)"};
 
@@ -30,7 +29,7 @@ public class QuickSelectTest {
         Random random = new Random();
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
-            array[i] = random.nextInt(10000); // 生成随机整数
+            array[i] = random.nextInt(size); // 生成随机整数
         }
         return array;
     }
@@ -58,7 +57,7 @@ public class QuickSelectTest {
         int rowIndex = 1; // 从第二行开始填充数据
 
         for (int size : SIZES) {
-            int[] array = generateSortedArray(size);
+            int[] array = generateRandomArray(size);
             for (int i = 0; i < TEST_COUNT; i++) {
                 int target = RANDOM.nextInt(size) + 1;
 
