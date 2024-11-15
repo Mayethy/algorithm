@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class DpLongestCommonSubsequence {
 
-    public Map<String, Object> getAllLCS(String str1, String str2) {
+    public Map<String, Object> getLCS(String str1, String str2) {
         int m = str1.length();
         int n = str2.length();
         int[][] dp = new int[m + 1][n + 1];
@@ -65,7 +65,7 @@ public class DpLongestCommonSubsequence {
         DpLongestCommonSubsequence lcsSolver = new DpLongestCommonSubsequence();
         String str1 = "ABCBDAB";
         String str2 = "BDCABA";
-        Map<String, Object> result = lcsSolver.getAllLCS(str1, str2);
+        Map<String, Object> result = lcsSolver.getLCS(str1, str2);
         System.out.println("Length: " + result.get("length"));
         System.out.println("LCS: " + result.get("subsequences"));
     }
