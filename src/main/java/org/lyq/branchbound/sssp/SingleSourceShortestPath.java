@@ -17,15 +17,15 @@ public class SingleSourceShortestPath {
     // Dijkstra Algorithm
     public int[] dijkstra(int[][] graph, int source) {
         int n = graph.length;
-        int[] dist = new int[n]; // Store shortest path distances
-        boolean[] visited = new boolean[n]; // Mark visited nodes
+        int[] dist = new int[n]; // 存储最短路径
+        boolean[] visited = new boolean[n]; // 标记是否访问过
 
-        // Initialize distances to infinity
+        // 初始化距离为正无穷
         Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[source] = 0; // Distance to source is 0
+        dist[source] = 0; // 源点到自身的距离为 0
 
         for (int i = 0; i < n; i++) {
-            // Find the unvisited node with the smallest distance
+            // 找到未访问中距离最小的顶点
             int u = -1;
             int minDist = Integer.MAX_VALUE;
             for (int j = 0; j < n; j++) {
@@ -35,12 +35,12 @@ public class SingleSourceShortestPath {
                 }
             }
 
-            if (u == -1) break; // Graph might be disconnected
+            if (u == -1) break; // 图可能不连通
             visited[u] = true;
 
-            // Update distances for neighbors of u
+            // 更新 u 的邻居节点的距离
             for (int v = 0; v < n; v++) {
-                if (graph[u][v] != 0 && !visited[v]) { // Edge exists and not visited
+                if (graph[u][v] != 0 && !visited[v]) { // 有边且未访问
                     dist[v] = Math.min(dist[v], dist[u] + graph[u][v]);
                 }
             }
@@ -52,29 +52,29 @@ public class SingleSourceShortestPath {
     // Branch and Bound Method
     public int[] branchAndBound(int[][] graph, int source) {
         int n = graph.length;
-        int[] dist = new int[n]; // Store shortest path distances
-        boolean[] visited = new boolean[n]; // Mark visited nodes
+        int[] dist = new int[n]; // 存储最短路径
+        boolean[] visited = new boolean[n]; // 标记是否访问过
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[source] = 0;
 
-        // Priority queue sorted by path cost (shortest first)
+        // 优先队列，按路径长度排序（最短路径优先）
         PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(node -> node.cost));
-        pq.offer(new Node(source, 0)); // Add source to the queue
+        pq.offer(new Node(source, 0)); // 将源点加入队列
 
         while (!pq.isEmpty()) {
             Node current = pq.poll();
             int u = current.vertex;
 
-            if (visited[u]) continue; // Skip if already visited
+            if (visited[u]) continue; // 如果已经访问过，跳过
             visited[u] = true;
 
-            // Update distances for neighbors of u
+            // 更新 u 的邻居节点的距离
             for (int v = 0; v < n; v++) {
-                if (graph[u][v] != 0 && !visited[v]) { // Edge exists and not visited
+                if (graph[u][v] != 0 && !visited[v]) { // 有边且未访问
                     int newDist = dist[u] + graph[u][v];
                     if (newDist < dist[v]) {
                         dist[v] = newDist;
-                        pq.offer(new Node(v, newDist)); // Add new path to the queue
+                        pq.offer(new Node(v, newDist)); // 将新路径加入队列
                     }
                 }
             }
@@ -83,10 +83,10 @@ public class SingleSourceShortestPath {
         return dist;
     }
 
-    // Node class for Branch and Bound
+    // 定义节点类
     static class Node {
-        int vertex; // Node index
-        int cost;   // Path cost from the source
+        int vertex; // 节点编号
+        int cost;   // 距离源点的路径长度
 
         public Node(int vertex, int cost) {
             this.vertex = vertex;
