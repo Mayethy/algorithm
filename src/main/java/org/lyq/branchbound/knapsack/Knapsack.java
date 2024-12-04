@@ -163,7 +163,7 @@ public class Knapsack {
     public static void main(String[] args) {
         int[] values = {25, 24, 15};
         int[] weights = {18, 15, 10};
-        int capacity = 20;
+        int capacity = 20;//背包容量
 
         Knapsack solver = new Knapsack(values, weights, capacity);
 
